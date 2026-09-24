@@ -1,0 +1,19 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+
+        freqs = defaultdict(int)
+        length = 0
+        left = 0
+        most = 0
+        for right in range(len(s)):
+            freqs[s[right]] += 1 
+            most = max(most, freqs[s[right]])
+            if (right - left + 1) - most > k:
+                freqs[s[left]] -= 1 
+                left+=1 
+            length = max(length, right - left + 1)
+        
+        return length
+            
+
+        
